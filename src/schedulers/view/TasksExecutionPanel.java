@@ -196,6 +196,7 @@ public class TasksExecutionPanel extends javax.swing.JPanel {
     public void setTime(int time) {
         this.time = time;
         if (this.execution != null) setExecution(controller.getScheduler().schedule(time));
+        else changeSize();
         updateUI();
     }
     
