@@ -1,4 +1,4 @@
-package schedulers;
+package schedulers.model;
 
 import java.util.ArrayList;
 /**

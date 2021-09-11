@@ -1,4 +1,4 @@
-package schedulers;
+package schedulers.model;
 
 /**
  *
@@ -26,6 +26,10 @@ public class PeriodicTask extends Task {
 
     public long getCompleteExecutionCount() {
         return completeExecutionCount;
+    }
+    
+    public void resetCompleteExecutionCount() {
+        this.completeExecutionCount = 0;
     }
     
     @Override

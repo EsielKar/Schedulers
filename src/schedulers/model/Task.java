@@ -1,13 +1,15 @@
-package schedulers;
+package schedulers.model;
+
+import java.awt.Color;
 
 /**
  *
  * @author Esiel, Marco
  */
 public class Task {
-    private static long count = 0;
+    private static int count = 0;
     
-    private final long id;
+    private final int id;
     
     private final long arrivalTime;
     
@@ -26,7 +28,7 @@ public class Task {
         this.currentExecutionTime =  0;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -65,5 +67,20 @@ public class Task {
         return "Task{" + "id=" + id + ", arrivalTime=" + arrivalTime + ", burstTime=" + burstTime + ", deadlineTime=" + deadlineTime + ", currentExecutionTime=" + currentExecutionTime + '}';
     }
     
+    
+    public static Color taskColor(int id) {
+        switch (id % 10) {
+            case 0: return Color.RED;
+            case 1: return Color.BLUE;
+            case 2: return Color.GREEN;
+            case 3: return Color.YELLOW;
+            case 4: return Color.PINK;
+            case 5: return Color.CYAN;
+            case 6: return Color.MAGENTA;
+            case 7: return Color.GRAY;
+            case 8: return Color.ORANGE;
+            default: return Color.DARK_GRAY;
+        }
+    }
     
 }

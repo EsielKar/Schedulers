@@ -1,4 +1,4 @@
-package schedulers;
+package schedulers.model;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +22,14 @@ public class Scheduler {
     
     public Scheduler(SchedulingStrategy scheduling) throws InstantiationException, IllegalAccessException {
         this(new LinkedList(), scheduling);
+    }
+    
+    public Scheduler() throws InstantiationException, IllegalAccessException {
+        this(new LinkedList(), null);
+    }
+    
+    public void setStrategy(SchedulingStrategy scheduling) {
+        this.scheduling = scheduling;
     }
     
     public void addTask(Task task) { tasks.add(task); }
@@ -50,7 +58,11 @@ public class Scheduler {
             waitingTasks.clear();
             readyTasks.clear();
      
-            for (Task task : tasks) task.reset();
+            for (Task task : tasks){
+                task.reset();
+                if (task instanceof PeriodicTask)
+                    ((PeriodicTask) task).resetCompleteExecutionCount();
+            }
             waitingTasks.addAll(tasks);
         }
     }
