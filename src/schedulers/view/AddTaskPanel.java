@@ -5,6 +5,7 @@
  */
 package schedulers.view;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import schedulers.controller.Controller;
 import schedulers.model.PeriodicTask;
@@ -166,25 +167,32 @@ public class AddTaskPanel extends javax.swing.JPanel {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         if (!this.checkEmptiness(arrivalTimeTextField, burstTimeTextField, deadlineTextField)) {
-            if (!this.checkEmptiness(periodTextField)) {
-                controller.addTask(new PeriodicTask(
-                        Long.parseLong(arrivalTimeTextField.getText()),
-                        Long.parseLong(burstTimeTextField.getText()),
-                        Long.parseLong(deadlineTextField.getText()),
-                        Long.parseLong(periodTextField.getText())
-                ));
-                
-                System.out.println("CREA PERIODICA");
-            } else {
-                controller.addTask(new Task(
-                        Long.parseLong(arrivalTimeTextField.getText()),
-                        Long.parseLong(burstTimeTextField.getText()),
-                        Long.parseLong(deadlineTextField.getText())   
-                ));
-                System.out.println("CREA TAREA NORMAL");
+            try{
+                if (!this.checkEmptiness(periodTextField)) {
+
+                    controller.addTask(new PeriodicTask(
+                            Long.parseLong(arrivalTimeTextField.getText()),
+                            Long.parseLong(burstTimeTextField.getText()),
+                            Long.parseLong(deadlineTextField.getText()),
+                            Long.parseLong(periodTextField.getText())
+                    ));
+
+                    System.out.println("CREA PERIODICA");
+                } else {
+                    controller.addTask(new Task(
+                            Long.parseLong(arrivalTimeTextField.getText()),
+                            Long.parseLong(burstTimeTextField.getText()),
+                            Long.parseLong(deadlineTextField.getText())   
+                    ));
+                    System.out.println("CREA TAREA NORMAL");
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Solo valores enteros son validos", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            // TODO: HAY CAMPOS VACIOS!!!!
+            JOptionPane.showMessageDialog(null, "El tiempo de llegada, "
+                    + "el tiempo de ejecución "
+                    + "y el deadline no pueden estar vacios", "Información incompleta", JOptionPane.WARNING_MESSAGE);
         }
         
         System.out.println(controller.getTasks());
