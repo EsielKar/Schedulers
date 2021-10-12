@@ -6,8 +6,7 @@ import java.util.List;
  *
  * @author Esiel
  */
-public class EDFSchedulingStrategy implements SchedulingStrategy {
-    
+public class EDFSchedulingStrategy implements SchedulingStrategy { 
     private long absoluteDeadline(Task task) {
         long taskAbsoluteDeadline = task.getDeadlineTime() + task.getArrivalTime();
         if (task instanceof PeriodicTask) {
@@ -17,7 +16,6 @@ public class EDFSchedulingStrategy implements SchedulingStrategy {
         }
         return taskAbsoluteDeadline;
     }
-
     @Override
     public Task scheduling(List<Task> readyTasks) {
         if (readyTasks != null && !readyTasks.isEmpty()) {
