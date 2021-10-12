@@ -7,11 +7,9 @@ import java.util.List;
  * @author Marco
  */
 public class RateMonotonicSchedulingStrategy implements SchedulingStrategy {
-    
     private long getPeriod(Task task) {
         return task instanceof PeriodicTask ? ((PeriodicTask) task).getPeriodTime() : task.getDeadlineTime();
     }
-
     @Override
     public Task scheduling(List<Task> readyTasks) {
         if (readyTasks != null && !readyTasks.isEmpty()) {
@@ -32,5 +30,4 @@ public class RateMonotonicSchedulingStrategy implements SchedulingStrategy {
         }
         return null;
     } 
-    
 }
