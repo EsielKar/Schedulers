@@ -37,21 +37,6 @@ public class Scheduler {
         this.tasks.clear();
         this.tasks.addAll(tasks);
     }
-    
-    private Task getEarliestTask() {
-        if (tasks != null && !tasks.isEmpty()) {
-            Task earliestTask = tasks.get(0);
-            if (tasks.size() > 1) {
-                for (Task task : tasks.subList(1, tasks.size())) {
-                    if (task.getArrivalTime() < earliestTask.getArrivalTime()) {
-                        earliestTask = task;
-                    }
-                }
-            }
-            return earliestTask;
-        }
-        return null;
-    }
 
     private void preparation() {
         if (tasks != null)  {
@@ -107,5 +92,4 @@ public class Scheduler {
         }
         return execution;
     }
-    
 }
